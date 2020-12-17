@@ -12,8 +12,17 @@
 
     @include("layouts.top_nav")
 
+
+
     <div class="body-content">
         @yield("content")
+    </div>
+
+
+
+
+    <div class="footer-content">
+        @yield("footer")
     </div>
 
 
