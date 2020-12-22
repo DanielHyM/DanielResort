@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminUserManagementController extends Controller
@@ -26,6 +27,8 @@ class AdminUserManagementController extends Controller
         return view('admin.users.create');
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +37,14 @@ class AdminUserManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $userData = $request->all();
+        bcrypt($userData['password']);
+
+        User::create($userData);
+
+
+
     }
 
     /**
