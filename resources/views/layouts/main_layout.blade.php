@@ -6,6 +6,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <title>DanielResort</title>
+    <style>
+
+        a{
+            margin: 2px;
+        }
+
+        .body-content{
+            margin-top: 50px;
+        }
+
+        .card-header{
+            background-color: #007BFF;
+            color: white;
+            font-weight: bolder;
+
+        }
+
+        #logout-form-menu{
+            display: none;
+        }
+
+
+    </style>
 
 </head>
     <body style="font-family: 'Roboto', sans-serif;">

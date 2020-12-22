@@ -4,5 +4,5 @@
 
 
 @section("content")
-Este es el contenido de la pagina de bienvenida del admin
+Este es el formulario de creacion de usuarios
 @endsection
