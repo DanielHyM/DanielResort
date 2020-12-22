@@ -39,7 +39,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="#">Lista de Apartamentos</a>
-                        <a class="dropdown-item" href="">Crear Apartamentos</a>
+                        <a class="dropdown-item" href="{{route('housings.create')}}">Crear Apartamentos</a>
 
                     </div>
                 </li>
@@ -51,7 +51,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="#">Lista de Reservas</a>
-                        <a class="dropdown-item" href="">Crear Reservas</a>
+                        <a class="dropdown-item" href="{{route('bookings.create')}}">Crear Reservas</a>
 
                     </div>
                 </li>
