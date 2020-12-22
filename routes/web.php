@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Controller@welcomeView')->name('/');
+
 Route::resource('/admin/users', 'AdminUserManagementController');
+Route::resource('/admin/housings', 'AdminHousingManagementController');
+Route::resource('/admin/bookings', 'AdminBookingManagementController');
 Route::resource('/admin', 'AdminController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
