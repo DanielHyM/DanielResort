@@ -20,24 +20,44 @@
 
             @can('admin')
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('users.create')}}">Crear Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Editar Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Crear Apartamento</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Editar Apartamento</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Crear Reserva</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Editar Reserva</a>
-                    </li>
+                <li class="dropdown  nav-item {{in_array(Route::currentRouteName(),['users.create','users.index']) ? "show" : null }}">
+                    <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuarios
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{route('users.index')}}">Lista de Usuarios</a>
+                        <a class="dropdown-item" href="{{route('users.create')}}">Crear Usuarios</a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown   nav-item">
+                    <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Apartamentos
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Lista de Apartamentos</a>
+                        <a class="dropdown-item" href="">Crear Apartamentos</a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown   nav-item">
+                    <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reservas
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Lista de Reservas</a>
+                        <a class="dropdown-item" href="">Crear Reservas</a>
+
+                    </div>
+                </li>
+
+
+
 
             @endcan
 

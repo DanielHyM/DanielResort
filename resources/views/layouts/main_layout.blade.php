@@ -14,6 +14,7 @@
 
         .body-content{
             margin-top: 50px;
+
         }
 
         .card-header{
@@ -25,6 +26,11 @@
 
         #logout-form-menu{
             display: none;
+        }
+
+        form{
+            margin: 0 auto;
+            width: 500px;
         }
 
 

@@ -14,7 +14,8 @@ class AdminUserManagementController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.users.list_users');
+
     }
 
     /**
@@ -39,9 +40,11 @@ class AdminUserManagementController extends Controller
     {
 
         $userData = $request->all();
+        $userData+= ['user' => 'test'];
         bcrypt($userData['password']);
-
         User::create($userData);
+
+        return redirect(route('users.index'));
 
 
 
