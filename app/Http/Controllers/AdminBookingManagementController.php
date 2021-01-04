@@ -13,7 +13,7 @@ class AdminBookingManagementController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.bookings.list_bookings');
     }
 
     /**

@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary" style="font-weight:bolder">
+    <img id="danielResortIcon" class=" navbar-expand-lg" src="{{asset('images/resort-icon.png')}}">
     <a class="navbar-brand" href="#" >DanielResort</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,25 +33,25 @@
                     </div>
                 </li>
 
-                <li class="dropdown   nav-item">
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['housings.create']) ? "show" : null }} ">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Apartamentos
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Lista de Apartamentos</a>
+                        <a class="dropdown-item" href="{{route('housings.index')}}">Lista de Apartamentos</a>
                         <a class="dropdown-item" href="{{route('housings.create')}}">Crear Apartamentos</a>
 
                     </div>
                 </li>
 
-                <li class="dropdown   nav-item">
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['bookings.create']) ? "show" : null }}">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reservas
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Lista de Reservas</a>
+                        <a class="dropdown-item" href="{{route('bookings.index')}}">Lista de Reservas</a>
                         <a class="dropdown-item" href="{{route('bookings.create')}}">Crear Reservas</a>
 
                     </div>

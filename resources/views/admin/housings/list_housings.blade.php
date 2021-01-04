@@ -11,12 +11,13 @@
 
 @section("content")
 
-    <table id="users">
+    <table id="housings">
         <thead>
             <tr>
-                <th>Nombre:</th>
-                <th>Dni:</th>
-                <th>Email:</th>
+                <th>Planta:</th>
+                <th>Numero Habitacion:</th>
+                <th>Descripcion:</th>
+                <th>Precio Por Noche:</th>
 
             </tr>
         </thead>

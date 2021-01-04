@@ -11,12 +11,13 @@
 
 @section("content")
 
-    <table id="users">
+    <table id="bookings">
         <thead>
             <tr>
-                <th>Nombre:</th>
-                <th>Dni:</th>
-                <th>Email:</th>
+                <th>idUsuario:</th>
+                <th>idHabitacion:</th>
+                <th>Fecha de Entrada:</th>
+                <th>Fecha de Salida:</th>
 
             </tr>
         </thead>

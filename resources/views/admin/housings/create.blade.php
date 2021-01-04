@@ -12,16 +12,16 @@
                     <div class="card-header">{{ __('Crear Alojamiento') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('users.store')}}">
+                        <form method="POST" action="{{route('housings.store')}}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                                <label for="floor" class="col-md-4 col-form-label text-md-right">{{ __('Planta') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required>
+                                    <input id="floor" type="text" class="form-control @error('floor') is-invalid @enderror" name="floor" value="{{ old('floor') }}" required>
 
-                                    @error('name')
+                                    @error('floor')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -30,12 +30,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Dni') }}</label>
+                                <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Numero Habitacion') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" >
+                                    <input id="room_number" type="text" class="form-control @error('room_number') is-invalid @enderror" name="room_number" required>
 
-                                    @error('dni')
+                                    @error('room_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -44,12 +44,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" >
+                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description"  required>
 
-                                    @error('email')
+                                    @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -58,12 +58,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Precio por Noche') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" >
+                                    <input id="price_per_night" type="number" class="form-control @error('price_per_night') is-invalid @enderror" name="price_per_night"  >
 
-                                    @error('password')
+                                    @error('price_per_night')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -75,7 +75,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-success">
-                                        {{ __('Crear Usuario') }}
+                                        {{ __('Crear Habitacion') }}
                                     </button>
                                 </div>
                             </div>

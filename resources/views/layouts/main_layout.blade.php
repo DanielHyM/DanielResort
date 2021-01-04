@@ -8,13 +8,32 @@
     <title>DanielResort</title>
     <style>
 
+        #danielResortIcon{
+            width:50px;
+            height: 50px;
+        }
+
+        #carouselExampleIndicators{
+            width: 800px;
+            margin: 0 auto;
+
+        }
+
         a{
             margin: 2px;
         }
 
         .body-content{
             margin-top: 50px;
+            text-align: center;
 
+
+
+
+        }
+
+        #mainText{
+            margin-top: 20px;
         }
 
         .card-header{
@@ -31,6 +50,11 @@
         form{
             margin: 0 auto;
             width: 500px;
+        }
+
+        body{
+            background-color:#F5F6FB;
+
         }
 
 
