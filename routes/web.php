@@ -15,11 +15,39 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Controller@welcomeView')->name('/');
 
-Route::resource('/admin/users', 'AdminUserManagementController');
-Route::resource('/admin/housings', 'AdminHousingManagementController');
-Route::resource('/admin/bookings', 'AdminBookingManagementController');
-Route::resource('/admin', 'AdminController');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function(){
+
+    Route::group(['prefix'=>'admin', 'middleware' => ['permission:admin']], function(){
+
+
+        Route::resource('/housings', 'AdminHousingManagementController');
+        Route::resource('/bookings', 'AdminBookingManagementController');
+        Route::resource('', 'AdminController');
+
+        Route::group(['prefix'=>'users', 'as'=>'users.'], function(){
+            Route::post('/listUsers', 'AdminUserManagementController@listUsers')->name('listUsers');
+
+        });
+
+        Route::resource('/users', 'AdminUserManagementController');
+
+
+
+    });
+
+
+
+
+
+
+
+
+});
+
+

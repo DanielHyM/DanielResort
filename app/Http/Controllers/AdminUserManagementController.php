@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Yajra\DataTables\DataTables;
 
 class AdminUserManagementController extends Controller
 {
@@ -25,7 +27,8 @@ class AdminUserManagementController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
 
@@ -42,7 +45,12 @@ class AdminUserManagementController extends Controller
         $userData = $request->all();
         $userData+= ['user' => 'test'];
         bcrypt($userData['password']);
-        User::create($userData);
+        $user = User::create($userData);
+
+        $userRol = Role::findOrFail($request->rol);
+        $user->assignRole($userRol->name);
+
+
 
         return redirect(route('users.index'));
 
@@ -59,6 +67,26 @@ class AdminUserManagementController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function listUsers(Request  $request)
+    {
+        $userData = User::all();
+
+       $dataTableUsers = DataTables::of($userData)->addColumn('rol', function($user){
+
+           if(is_null($user->roles->first())){
+               return '';
+           }else {
+               return $user->roles->first()->name;
+
+           }
+
+        })->make(true);
+
+       return $dataTableUsers;
+
     }
 
     /**
