@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function(){
 
         Route::resource('/users', 'AdminUserManagementController');
 
+        Route::group(['prefix'=>'housings', 'as'=>'housings.'], function(){
+            Route::post('/listHousings', 'AdminHousingManagementController@listHousings')->name('listHousings');
+
+        });
 
 
     });

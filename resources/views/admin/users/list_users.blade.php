@@ -22,6 +22,7 @@
                     <th>Email</th>
                     <th>Fecha de Creacion</th>
                     <th>Rol</th>
+                    <th>Acciones</th>
 
                 </tr>
                 </thead>
@@ -48,7 +49,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script>
        $(function (){
-          var tabla = $('#users').DataTable({
+          var table = $('#users').DataTable({
 
               processing: true,
               serverSide: true,
@@ -64,12 +65,54 @@
                   { data: 'name' },
                   { data: 'dni' },
                   { data: 'email' },
-                  { data: 'updated_at' },
-                  { data: 'rol' }
+                  { data: 'created_at' },
+                  { data: 'rol' },
+                  { data: 'actions' }
               ],
              searching:false,
 
 
+
+
+          });
+
+          $(document).on('click','.btnDeleteUser',function(event){
+              event.preventDefault();
+              Swal.fire({
+                  title: '¿Estas seguro?',
+                  text: "¡No podras deshacer los cambios!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: '¡Si, borrar!'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      var url = $(event.currentTarget).attr('href');
+                      $.post(url,{_method:'delete'})
+                      .done(function(response){
+                          table.draw();
+
+                          Swal.fire(
+                              '¡Borrado!',
+                              'Registro Eliminado.',
+                              'success'
+                          )
+
+                      })
+                      .fail(function(response){
+
+                          Swal.fire(
+                              '¡Ups!',
+                              'Ha habido un error.',
+                              'error'
+                          )
+
+                      });
+
+
+                  }
+              })
 
 
           });

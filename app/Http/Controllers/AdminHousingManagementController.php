@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Housing;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class AdminHousingManagementController extends Controller
 {
@@ -36,7 +38,11 @@ class AdminHousingManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $housingsData = $request;
+        Housing::create($housingsData->all());
+
+        return redirect(route('housings.index'));
+
     }
 
     /**
@@ -82,5 +88,16 @@ class AdminHousingManagementController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function listHousings(Request $request)
+    {
+        $housingsData = Housing::all();
+
+        $housingDataTables = DataTables::of($housingsData)->make(true);
+        return $housingDataTables;
+
+
     }
 }
