@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Housing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class AdminHousingManagementController extends Controller
@@ -95,11 +96,22 @@ class AdminHousingManagementController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Housing $housing)
     {
-        //
+        try{
+
+            $housing->delete();
+            return response()->json([
+            ],200);
+
+        }catch(Throwable $ex){
+            Log::error($ex);
+            return response()->json([
+
+            ],500);
+        }
     }
 
 
@@ -112,7 +124,7 @@ class AdminHousingManagementController extends Controller
                 ->addColumn('actions', function ($housing){
 
                     return '<a  class="btn btn-success" href='. route('housings.edit', $housing->id) . '><i class="fas fa-pencil-alt"></i></a>'
-                             .'<a  class="btn btn-danger btnDeleteUser" href='. route('housings.destroy', $housing->id) . '><i class="fas fa-eraser"></i></a>';
+                             .'<a  class="btn btn-danger btnDeleteHousing" href='. route('housings.destroy', $housing) . '><i class="fas fa-eraser"></i></a>';
 
                 })->editColumn('created_at', function ($housing){
 

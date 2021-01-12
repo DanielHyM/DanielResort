@@ -145,9 +145,7 @@ class AdminUserManagementController extends Controller
     {
         try{
             $user->delete();
-
             return response()->json([
-
             ],200);
 
         }catch(Throwable $ex){
