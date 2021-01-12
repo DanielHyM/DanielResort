@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Housing;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -62,9 +63,12 @@ class AdminHousingManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Housing $housing)
     {
-        //
+
+        return view('admin.housings.update', compact('housing'));
+
+
     }
 
     /**
@@ -74,9 +78,17 @@ class AdminHousingManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Housing $housing)
     {
-        //
+        $housing->floor = $request->floor;
+        $housing->room_number = $request->room_number;
+        $housing->description = $request->description;
+        $housing->price_per_night = $request->price_per_night;
+        $housing->save();
+
+        return redirect(route('housings.index'));
+
+
     }
 
     /**
@@ -95,7 +107,22 @@ class AdminHousingManagementController extends Controller
     {
         $housingsData = Housing::all();
 
-        $housingDataTables = DataTables::of($housingsData)->make(true);
+        $housingDataTables =
+            DataTables::of($housingsData)
+                ->addColumn('actions', function ($housing){
+
+                    return '<a  class="btn btn-success" href='. route('housings.edit', $housing->id) . '><i class="fas fa-pencil-alt"></i></a>'
+                             .'<a  class="btn btn-danger btnDeleteUser" href='. route('housings.destroy', $housing->id) . '><i class="fas fa-eraser"></i></a>';
+
+                })->editColumn('created_at', function ($housing){
+
+                    return Carbon::parse($housing->created_at)->format('d/m/Y h:i:s');
+
+                })->rawColumns(['actions'])->make(true);
+
+
+
+
         return $housingDataTables;
 
 

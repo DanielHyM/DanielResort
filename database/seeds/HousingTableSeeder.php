@@ -12,11 +12,14 @@ class HousingTableSeeder extends Seeder
      */
     public function run()
     {
-        //
 
-        factory(Housing::class, 30)->create();
+        for( $f = 1; $f < 11; $f++) {
+            for($i = 1 ; $i < 6; $i++){
 
+                factory(Housing::class)->create(['floor'=>$f,'room_number'=>$f.'0'.$i]);
 
+            }
 
+         }
     }
 }

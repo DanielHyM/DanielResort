@@ -76,7 +76,7 @@ class AdminUserManagementController extends Controller
     {
         $userData = User::all();
 
-       $dataTableUsers = DataTables::of($userData)->addColumn('rol', function($user){
+        $dataTableUsers = DataTables::of($userData)->addColumn('rol', function($user){
 
            if(is_null($user->roles->first())){
                return '';
