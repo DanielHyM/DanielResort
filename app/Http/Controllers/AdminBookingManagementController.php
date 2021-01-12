@@ -47,29 +47,17 @@ class AdminBookingManagementController extends Controller
 
 
 
+        $bookingData['check_in_date'] = Carbon::parse($bookingData['check_in_date'])->format('Y-m-d');
+        $bookingData['check_out_date'] = Carbon::parse($bookingData['check_out_date'])->format('Y-m-d');
 
-        $checkInDate = $request->check_in_date;
-        $checkInTime = $request->check_in_time;
-
-        $checkOutDate = $request->check_out_date;
-        $checkOutTime = $request->check_out_Time;
-
-        $bookingData["check_in_date"] = $checkInDate . $checkInTime;
-
-        $bookingData["check_in_date"] = str_replace('/','-',$bookingData["check_in_date"]);
-        $bookingData["check_in_date"]  = str_replace('PM','',$bookingData["check_in_date"] );
-        $bookingData["check_in_date"]  = str_replace('AM','',$bookingData["check_in_date"] );
+        $bookingData['check_in_time'] = str_replace('AM','',$bookingData['check_in_time']);
+        $bookingData['check_out_time'] = str_replace('AM','',$bookingData['check_out_time']);
+        $bookingData['check_in_time'] = str_replace('PM','',$bookingData['check_in_time']);
+        $bookingData['check_out_time'] = str_replace('PM','',$bookingData['check_out_time']);
 
 
+        
 
-        $bookingData["check_out_date"] = $checkOutDate . $checkOutTime;
-
-        $bookingData["check_out_date"] = str_replace('/','-',  $bookingData["check_out_date"]);
-        $bookingData["check_out_date"]  = str_replace('PM','', $bookingData["check_out_date"] );
-        $bookingData["check_out_date"]  = str_replace('AM','', $bookingData["check_out_date"] );
-
-
-        dd($bookingData);
         Booking::create($bookingData);
     }
 

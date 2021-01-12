@@ -125,10 +125,11 @@
 
         $(function () {
 
-            var array = ["2021-01-13","2021-01-14","2021-01-15","2021-01-21"]
+           var array = ["2021-01-13","2021-01-14","2021-01-15","2021-01-21"]
 
             $(".datepicker").datepicker({
                 minDate: 0,
+
                 beforeShowDay: function(date){
                     var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
                     return [ array.indexOf(string) == -1 ]
