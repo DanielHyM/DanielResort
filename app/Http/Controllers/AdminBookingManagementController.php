@@ -56,9 +56,11 @@ class AdminBookingManagementController extends Controller
         $bookingData['check_out_time'] = str_replace('PM','',$bookingData['check_out_time']);
 
 
-        
+
 
         Booking::create($bookingData);
+
+        return redirect(route('bookings.index'));
     }
 
     /**
