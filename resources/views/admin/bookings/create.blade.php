@@ -1,7 +1,12 @@
 @extends("layouts.main_layout")
 
 
+@section('head')
+    <!--DATEPICKER-->
+{{--    <link href="{{asset('css/bootstrap-datetimepicker.css')}}" rel="stylesheet">--}}
 
+    <!--DATEPICKEREND-->
+@endsection
 
 @section("content")
 
@@ -16,12 +21,49 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Seleccione Usuario') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required>
+                                    <select id="user_id"  class="form-control @error('user_id') is-invalid @enderror" name="user_id">
 
-                                    @error('name')
+                                        @foreach($users as $user)
+
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
+
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Seleccione Habitacion') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="housing_id"  class="form-control @error('housing_id') is-invalid @enderror" name="housing_id">
+
+                                        @foreach($housings as $housing)
+
+                                            <option value="{{$housing->id}}">{{$housing->room_number}}</option>
+
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="check_in_date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Entrada') }}</label>
+
+                                <div class="col-md-6">
+
+
+                                    <input size="16" type="text" class="form-control datepicker" id="check_in_date" name="check_in_date">
+
+
+
+
+                                    @error('check_in_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -30,12 +72,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Dni') }}</label>
+                                <label for="check_in_time" class="col-md-4 col-form-label text-md-right">{{ __('Hora de Entrada') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" >
+                                    <input id="check_in_time" type="text" class="form-control timepicker @error('check_in_time') is-invalid @enderror" name="check_in_time" >
 
-                                    @error('dni')
+                                    @error('check_in_time')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -44,12 +86,17 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                                <label for="check_out_date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Salida') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" >
 
-                                    @error('email')
+
+                                    <input size="16" type="text" class="form-control datepicker" id="check_out_date" name="check_out_date">
+
+
+
+
+                                    @error('check_out_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -57,13 +104,14 @@
                                 </div>
                             </div>
 
+
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                                <label for="check_out_time" class="col-md-4 col-form-label text-md-right">{{ __('Hora de Salida') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" >
+                                    <input id="check_out_time" type="text" class="form-control timepicker @error('check_out_time') is-invalid @enderror" name="check_out_time" >
 
-                                    @error('password')
+                                    @error('check_out_time')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -75,7 +123,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-success">
-                                        {{ __('Crear Usuario') }}
+                                        {{ __('Crear Reserva') }}
                                     </button>
                                 </div>
                             </div>
@@ -85,5 +133,10 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('script')
+
 
 @endsection
