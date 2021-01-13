@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Housing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Mockery\Exception;
 use Yajra\DataTables\DataTables;
+use function Symfony\Component\Translation\t;
 
 class AdminHousingManagementController extends Controller
 {
@@ -118,6 +121,7 @@ class AdminHousingManagementController extends Controller
     public function listHousings(Request $request)
     {
         $housingsData = Housing::all();
+        $bookingsData = Booking::all();
 
         $housingDataTables =
             DataTables::of($housingsData)
@@ -126,11 +130,22 @@ class AdminHousingManagementController extends Controller
                     return '<a  class="btn btn-success" href='. route('housings.edit', $housing->id) . '><i class="fas fa-pencil-alt"></i></a>'
                              .'<a  class="btn btn-danger btnDeleteHousing" href='. route('housings.destroy', $housing) . '><i class="fas fa-eraser"></i></a>';
 
+                })->addColumn('available', function ($housing){
+
+                    $bookings = Booking::where('housing_id',$housing->id)->first();
+
+                    if($bookings==null){
+                        return '<label>Disponible</label>';
+                    }else{
+                        return '<label>No Disponible</label>';
+                    }
+
+
                 })->editColumn('created_at', function ($housing){
 
                     return Carbon::parse($housing->created_at)->format('d/m/Y h:i:s');
 
-                })->rawColumns(['actions'])->make(true);
+                })->rawColumns(['actions','available'])->make(true);
 
 
 

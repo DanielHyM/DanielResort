@@ -19,6 +19,7 @@
                 <th>Descripcion</th>
                 <th>Precio/Noche</th>
                 <th>Fecha de creacion</th>
+                <th>Disponibilidad</th>
                 <th>Acciones</th>
 
             </tr>
@@ -58,6 +59,7 @@
                     { data: 'description' },
                     { data: 'price_per_night' },
                     { data: 'created_at' },
+                    { data: 'available' },
                     { data: 'actions' }
 
                 ],
