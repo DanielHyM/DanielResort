@@ -12,7 +12,7 @@
                     <div class="card-header">{{ __('Modificar Alojamiento') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('housings.update', $housing)}}">
+                        <form method="POST" action="{{route('housings.update', $housing)}}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
 
@@ -65,6 +65,34 @@
                                     <input id="price_per_night" type="number" class="form-control @error('price_per_night') is-invalid @enderror" name="price_per_night" value="{{$housing->price_per_night}}"  >
 
                                     @error('price_per_night')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+
+
+                                <div class="col-md-12">
+                                    <img src="{{asset($housing->getMedia('housingImages')->first()->getUrl())}}" style="width: 200px;height: 200px;" >
+
+                                    @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Imagen') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" encty  >
+
+                                    @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

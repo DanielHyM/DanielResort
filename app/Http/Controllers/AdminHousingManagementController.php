@@ -43,8 +43,15 @@ class AdminHousingManagementController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $housingsData = $request;
-        Housing::create($housingsData->all());
+        $housing = Housing::create($housingsData->all());
+
+        $housing
+            ->addMediaFromRequest('image')
+            ->toMediaCollection('housingImages');
+
 
         return redirect(route('housings.index'));
 
@@ -88,7 +95,12 @@ class AdminHousingManagementController extends Controller
         $housing->room_number = $request->room_number;
         $housing->description = $request->description;
         $housing->price_per_night = $request->price_per_night;
-        $housing->save();
+
+        $housing->getMedia('housingImages')->first()->delete();
+        $housing
+            ->addMediaFromRequest('image')
+            ->toMediaCollection('housingImages');
+
 
         return redirect(route('housings.index'));
 
@@ -156,7 +168,7 @@ class AdminHousingManagementController extends Controller
 
                     return Carbon::parse($housing->created_at)->format('d/m/Y h:i:s');
 
-                })->rawColumns(['actions','available','dateOfAvailable'])->make(true);
+                })->rawColumns(['actions','available','dateOfAvailable','image'])->make(true);
 
 
 

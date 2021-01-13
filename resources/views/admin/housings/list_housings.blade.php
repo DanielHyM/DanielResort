@@ -67,9 +67,6 @@
                 ],
                 searching:false,
 
-
-
-
             });
 
             $(document).on('click','.btnDeleteHousing',function(event){

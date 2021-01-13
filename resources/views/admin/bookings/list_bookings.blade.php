@@ -11,13 +11,16 @@
 
 @section("content")
 
-    <table id="bookings">
+    <table id="bookings" class="table table-striped table-bordered ">
         <thead>
             <tr>
-                <th>idUsuario:</th>
-                <th>idHabitacion:</th>
-                <th>Fecha de Entrada:</th>
-                <th>Fecha de Salida:</th>
+                <th>Usuario</th>
+                <th>Habitacion</th>
+                <th>Fecha de Entrada</th>
+                <th>Hora de Entrada</th>
+                <th>Fecha de Salida</th>
+                <th>Hora de Salida</th>
+                <th>Fecha de Creacion</th>
 
             </tr>
         </thead>
@@ -34,27 +37,82 @@
 
 
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script>
-    /*   $(function (){
-          var tabla = $('#usuarios').DataTable({
+        $(function (){
+            var table = $('#bookings').DataTable({
 
-              ajax: {
-                  type: 'POST',
-                  url: "",
-                  data: function (d) {
-                      d.f_invoice_number = $('#f-invoice-number').val();
-                      d.f_invoice_customer = $('#f-invoice-customer').val();
-                  }
-              },
+                processing: true,
+                serverSide: true,
+                language:{
+                    url:'{{asset('dataTableTranslations/Spanish.json')}}'
+                },
+                ajax: {
+                    type: 'POST',
+                    url: "{{route('bookings.listBookings')}}",
+
+                },
+                columns: [
+                    { data: 'user_id' },
+                    { data: 'housing_id' },
+                    { data: 'check_in_date' },
+                    { data: 'check_in_time' },
+                    { data: 'check_out_date' },
+                    { data: 'check_out_time' },
+                    { data: 'created_at' }
+
+                ],
+                searching:false,
 
 
-          });
 
-       });
-*/
+
+            });
+
+            $(document).on('click','.btnDeleteUser',function(event){
+                event.preventDefault();
+                Swal.fire({
+                    title: '¿Estas seguro?',
+                    text: "¡No podras deshacer los cambios!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Si, borrar!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = $(event.currentTarget).attr('href');
+                        $.post(url,{_method:'delete'})
+                            .done(function(response){
+                                table.draw();
+
+                                Swal.fire(
+                                    '¡Borrado!',
+                                    'Registro Eliminado.',
+                                    'success'
+                                )
+
+                            })
+                            .fail(function(response){
+
+                                Swal.fire(
+                                    '¡Ups!',
+                                    'Ha habido un error.',
+                                    'error'
+                                )
+
+                            });
+
+
+                    }
+                })
+
+
+            });
+
+        });
+
 
     </script>
 @endsection

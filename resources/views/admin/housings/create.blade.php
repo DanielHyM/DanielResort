@@ -12,7 +12,7 @@
                     <div class="card-header">{{ __('Crear Alojamiento') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('housings.store')}}">
+                        <form method="POST" action="{{route('housings.store')}}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -64,6 +64,20 @@
                                     <input id="price_per_night" type="number" class="form-control @error('price_per_night') is-invalid @enderror" name="price_per_night"  >
 
                                     @error('price_per_night')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Imagen') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" encty  >
+
+                                    @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Housing::class, function (Faker $faker) {
 
     return [
-        'price_per_night' => $faker->randomFloat($numberDecimals = 2, 30, 190)
+        'price_per_night' => $faker->randomFloat($numberDecimals = 2, 30, 190),
+        'description'=>'Habitación muy comoda con vistas geniales'
     ];
 });

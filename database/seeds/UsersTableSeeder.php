@@ -21,11 +21,21 @@ class UsersTableSeeder extends Seeder
             'password'=> bcrypt('admin')
             ]);
 
+        $userSecond = User::firstOrCreate([
+            'name'=>'user',
+            'dni'=>'49130181-L',
+            'email'=>'user@user.es',
+            'user'=>'user',
+            'password'=> bcrypt('user')
+        ]);
+
+        $userSecond->assignRole('user');
         $user->assignRole('admin');
 
         factory(User::class,10)->create()->each(function($userClient){
 
             $userClient->assignRole('user');
+
 
         });
 

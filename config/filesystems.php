@@ -64,6 +64,17 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'housingImages' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/housingImages'),
+            'url' => env('APP_URL'). '/storage/housingImages',
+            'visibility' => 'public',
+        ],
+
+
+
+
+
     ],
 
     /*

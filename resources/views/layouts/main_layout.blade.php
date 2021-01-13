@@ -50,8 +50,8 @@
 
         .card-header{
             background-color: #007BFF;
-            color: white;
             font-weight: bolder;
+            color: white;
 
         }
 
@@ -65,7 +65,7 @@
         }
 
         body{
-            background-color:#F5F6FB;
+            background-color: #e5e5e5;
 
         }
 

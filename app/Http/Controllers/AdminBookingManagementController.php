@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SebastianBergmann\Comparator\Book;
+use Yajra\DataTables\DataTables;
 
 class AdminBookingManagementController extends Controller
 {
@@ -106,5 +107,33 @@ class AdminBookingManagementController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listBookings(Request $request){
+
+        $bookingData = Booking::all();
+        $bookingDataTable = DataTables::of($bookingData)
+            ->editColumn('housing_id',function($booking){
+
+                $housing = Housing::find($booking)->first();
+
+                return  $housing->room_number;
+
+            })->editColumn('user_id',function($booking){
+
+                $user = User::find($booking)->first();
+
+                return  $user->name;
+
+            })->editColumn('created_at',function($booking){
+
+                return Carbon::parse($booking->created_at)->format('d/m/Y h:i:s');
+            })->make(true);
+
+        return $bookingDataTable;
+
+
+
+
     }
 }

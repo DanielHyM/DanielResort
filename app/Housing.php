@@ -21,4 +21,10 @@ class Housing extends Model implements hasMedia
         'price_per_night'
 
         ];
+
+
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('housingImages')->useDisk('housingImages');
+    }
 }

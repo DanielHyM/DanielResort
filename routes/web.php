@@ -42,6 +42,25 @@ Route::middleware('auth')->group(function(){
 
         });
 
+        Route::group(['prefix'=>'bookings', 'as'=>'bookings.'], function(){
+            Route::post('/listBookings', 'AdminBookingManagementController@listBookings')->name('listBookings');
+
+        });
+
+
+    });
+
+    Route::group(['prefix'=>'user', 'middleware' => ['permission:user']], function(){
+
+        Route::group(['prefix'=>'housings', 'as'=>'user.'], function(){
+            Route::post('/listHousings', 'UserController@listHousings')->name('listHousings');
+
+        });
+
+        Route::group(['prefix'=>'home', 'as'=>'user.'], function(){
+            Route::get('', 'UserController@index')->name('home');
+
+        });
 
     });
 
