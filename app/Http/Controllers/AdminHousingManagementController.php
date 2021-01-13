@@ -141,11 +141,22 @@ class AdminHousingManagementController extends Controller
                     }
 
 
+                })->addColumn('dateOfAvailable', function ($housing){
+
+
+                    $bookings = Booking::where('housing_id',$housing->id)->first();
+
+                    if($bookings==null){
+                        return '<label>Libre</label>';
+                    }else{
+                        return '<label>Test</label>';
+                    }
+
                 })->editColumn('created_at', function ($housing){
 
                     return Carbon::parse($housing->created_at)->format('d/m/Y h:i:s');
 
-                })->rawColumns(['actions','available'])->make(true);
+                })->rawColumns(['actions','available','dateOfAvailable'])->make(true);
 
 
 
