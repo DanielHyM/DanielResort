@@ -62,6 +62,22 @@
 
             @endcan
 
+            @can('user')
+
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['housings.create']) ? "show" : null }} ">
+                    <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Apartamentos
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{route('user.home',Auth::user()->id)}}">Lista de Apartamentos</a>
+
+
+                    </div>
+                </li>
+
+            @endcan
+
 
 
 
