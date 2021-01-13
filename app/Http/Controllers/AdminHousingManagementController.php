@@ -96,7 +96,6 @@ class AdminHousingManagementController extends Controller
         $housing->description = $request->description;
         $housing->price_per_night = $request->price_per_night;
 
-        $housing->getMedia('housingImages')->first()->delete();
         $housing
             ->addMediaFromRequest('image')
             ->toMediaCollection('housingImages');
