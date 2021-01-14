@@ -22,7 +22,12 @@
         <div class="card-body">
             <h5 class="card-title">Habitacion {{$housing->room_number}}</h5>
             <p class="card-text">{{$housing->description}}.</p>
-            <a href="#" class="btn btn-primary">Reservar</a>
+            <form action="{{route('user.booking.create',$housing)}}" method="POST">
+                @csrf
+                <input type="submit"  class="btn btn-primary" value="Reservar">
+            </form>
+
+
         </div>
     </div>
     @endforeach

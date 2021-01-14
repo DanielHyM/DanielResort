@@ -64,17 +64,31 @@
 
             @can('user')
 
-                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['housings.create']) ? "show" : null }} ">
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['user.home']) ? "show" : null }} ">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Apartamentos
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{route('user.home',Auth::user()->id)}}">Lista de Apartamentos</a>
+                        <a class="dropdown-item" href="{{route('user.housing.list',Auth::user()->id)}}">Lista de Apartamentos</a>
 
+
+                        <form action="{{route('user.booking.list')}}" method="POST" >
+                            @csrf
+                            <input type="submit" class="dropdown-item"  value="Mis Reservas">
+                        </form>
 
                     </div>
+
+
+
+
+
+
                 </li>
+
+
+
 
             @endcan
 

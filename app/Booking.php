@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Booking extends Model
 {
+    use SoftDeletes;
     //
     protected $fillable = [
 
@@ -17,4 +20,6 @@ class Booking extends Model
         'check_out_date'
 
         ];
+
+
 }

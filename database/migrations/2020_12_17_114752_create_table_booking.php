@@ -20,6 +20,7 @@ class CreateTableBooking extends Migration
             $table->dateTime('check_in_date');
             $table->dateTime('check_out_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

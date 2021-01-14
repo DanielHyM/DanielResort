@@ -125,15 +125,16 @@
 
         $(function () {
 
-           var array = ["2021-01-13","2021-01-14","2021-01-15","2021-01-21"]
+          // var array = ["2021-01-13","2021-01-14","2021-01-15","2021-01-21"]
 
             $(".datepicker").datepicker({
                 minDate: 0,
+                dateFormat: 'dd-mm-yy',
 
-                beforeShowDay: function(date){
-                    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                    return [ array.indexOf(string) == -1 ]
-                }
+                // beforeShowDay: function(date){
+                //     var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                //     return [ array.indexOf(string) == -1 ]
+                // }
 
             });
 
@@ -148,6 +149,29 @@
                 scrollbar: true
             });
 
+        });
+
+
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $(function () {
+            $("#fecha").datepicker();
         });
 
 

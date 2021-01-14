@@ -50,15 +50,26 @@ Route::middleware('auth')->group(function(){
 
     });
 
-    Route::group(['prefix'=>'user', 'middleware' => ['permission:user']], function(){
+    Route::group(['prefix'=>'user' , 'as' => 'user.' , 'middleware' => ['permission:user']], function(){
 
-        Route::group(['prefix'=>'housings', 'as'=>'user.'], function(){
-            Route::post('/listHousings', 'UserController@listHousings')->name('listHousings');
+        Route::group(['prefix'=>'housings', 'as'=>'housing.'], function(){
+            Route::get('/listHousings', 'UserController@index')->name('list');
 
         });
 
-        Route::group(['prefix'=>'home', 'as'=>'user.'], function(){
+        Route::group(['prefix'=>'home'], function(){
             Route::get('', 'UserController@index')->name('home');
+
+
+        });
+
+
+        Route::group(['prefix'=>'bookings', 'as'=>'booking.'], function(){
+
+            Route::post('/create/{housing}', 'UserController@createBooking')->name('create');
+            Route::post('/store/{housing}', 'AdminBookingManagementController@store')->name('store');
+            Route::post('/list', 'UserController@listing')->name('list');
+            Route::post('/list/myBookings', 'UserController@listBookings')->name('listBookings');
 
         });
 
