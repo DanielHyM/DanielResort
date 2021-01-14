@@ -21,6 +21,7 @@
                 <th>Fecha de Salida</th>
                 <th>Hora de Salida</th>
                 <th>Fecha de Creacion</th>
+                <th>Acciones</th>
 
             </tr>
         </thead>
@@ -60,7 +61,8 @@
                     { data: 'check_in_time' },
                     { data: 'check_out_date' },
                     { data: 'check_out_time' },
-                    { data: 'created_at' }
+                    { data: 'created_at' },
+                    { data: 'actions' }
 
                 ],
                 searching:false,
@@ -70,7 +72,7 @@
 
             });
 
-            $(document).on('click','.btnDeleteUser',function(event){
+            $(document).on('click','.btnDeleteBooking',function(event){
                 event.preventDefault();
                 Swal.fire({
                     title: '¿Estas seguro?',

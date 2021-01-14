@@ -68,8 +68,12 @@ Route::middleware('auth')->group(function(){
 
             Route::post('/create/{housing}', 'UserController@createBooking')->name('create');
             Route::post('/store/{housing}', 'AdminBookingManagementController@store')->name('store');
-            Route::post('/list', 'UserController@listing')->name('list');
+            Route::get('/list', 'UserController@listing')->name('list');
             Route::post('/list/myBookings', 'UserController@listBookings')->name('listBookings');
+            Route::delete('/list/myBookings/destroy/{booking}', 'AdminBookingManagementController@destroy')->name('destroy');
+            Route::get('/list/myBookings/edit/{booking}', 'UserController@edit')->name('edit');
+            Route::put('/list/myBookings/update', 'AdminBookingManagementController@update')->name('update');
+
 
         });
 

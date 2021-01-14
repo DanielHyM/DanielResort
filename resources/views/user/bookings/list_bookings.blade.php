@@ -11,7 +11,7 @@
 
 @section("content")
 
-    <table id="bookings" class="table table-striped table-bordered ">
+    <table id="bookingsUser" class="table table-striped table-bordered ">
         <thead>
             <tr>
 
@@ -21,6 +21,8 @@
                 <th>Fecha de Salida</th>
                 <th>Hora de Salida</th>
                 <th>Fecha de Compra</th>
+                <th>Acciones</th>
+
 
             </tr>
         </thead>
@@ -41,7 +43,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(function (){
-            var table = $('#bookings').DataTable({
+            var table = $('#bookingsUser').DataTable({
 
                 processing: true,
                 serverSide: true,
@@ -61,6 +63,7 @@
                     { data: 'check_out_date' },
                     { data: 'check_out_time' },
                     { data: 'created_at' },
+                    { data: 'actions' }
 
 
                 ],
@@ -71,7 +74,7 @@
 
             });
 
-            $(document).on('click','.btnDeleteUser',function(event){
+            $(document).on('click','.btnDeleteBookingUser',function(event){
                 event.preventDefault();
                 Swal.fire({
                     title: '¿Estas seguro?',

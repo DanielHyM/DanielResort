@@ -31,31 +31,47 @@ class UserController extends Controller
 
     public function listBookings(){
 
+
         $userId = Auth::id();
-       // $bookingData = DB::table('bookings')->where('user_id',$userId)->get();
         $bookingData = Booking::where('user_id',$userId);
+
         $bookingDataTable = DataTables::of($bookingData)
             ->editColumn('housing_id',function($booking){
-
                 $housing = Housing::find($booking)->first();
-
                 return  $housing->room_number;
 
             })->editColumn('user_id',function($booking){
-
                 $user = User::find($booking)->first();
-
                 return  $user->name;
 
             })->editColumn('created_at',function($booking){
-
                 return Carbon::parse($booking->created_at)->format('d/m/Y h:i:s');
-            })->make(true);
+
+            })->addColumn('actions',function($booking){
+
+                return '<a  class="btn btn-success" href='. route('user.booking.edit', $booking) . '><i class="fas fa-pencil-alt"></i></a>'
+                    .'<a  class="btn btn-danger btnDeleteBookingUser" href='. route('user.booking.destroy', $booking) . '><i class="fas fa-eraser"></i></a>';
+
+            })->editColumn('check_in_date',function($booking){
+
+                 return Carbon::parse($booking->created_at)->format('d/m/Y');
+
+            })->editColumn('check_out_date',function($booking){
+
+                return Carbon::parse($booking->created_at)->format('d/m/Y');
+
+            })->rawColumns(['actions'])->make(true);
 
         return $bookingDataTable;
 
 
 
+    }
+
+    public function edit(Booking $booking){
+
+
+        return view('user.bookings.update',compact('booking'));
     }
 
 

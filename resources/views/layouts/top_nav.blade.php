@@ -72,12 +72,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{route('user.housing.list',Auth::user()->id)}}">Lista de Apartamentos</a>
 
-
-                        <form action="{{route('user.booking.list')}}" method="POST" >
-                            @csrf
-                            <input type="submit" class="dropdown-item"  value="Mis Reservas">
-                        </form>
-
+                        <a class="dropdown-item" href="{{route('user.booking.list')}}">Mis Reservas</a>
                     </div>
 
 
