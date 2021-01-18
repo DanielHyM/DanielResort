@@ -17,7 +17,7 @@
                     <div class="card-header">{{ __('Crear Reserva') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('bookings.store')}}">
+                        <form method="POST" action="{{route('bookings.store')}}" class="checkAvaiability" id="checkAvaiability">
                             @csrf
 
                             <div class="form-group row">
@@ -137,6 +137,25 @@
 @endsection
 
 @section('script')
+<script>
 
+
+    $(document).ready(function(){
+
+        $('#housing_id').trigger('change')
+
+    })
+
+    $('#housing_id').change(function(){
+         console.log( $(this).val())
+
+        $('#checkAvaiability').attr('data-housing', $(this).val())
+
+    })
+
+
+
+
+</script>
 
 @endsection

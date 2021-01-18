@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function(){
             Route::post('/list/myBookings', 'UserController@listBookings')->name('listBookings');
             Route::delete('/list/myBookings/destroy/{booking}', 'AdminBookingManagementController@destroy')->name('destroy');
             Route::get('/list/myBookings/edit/{booking}', 'UserController@edit')->name('edit');
-            Route::put('/list/myBookings/update', 'AdminBookingManagementController@update')->name('update');
+            Route::put('/list/myBookings/{booking}/update', 'AdminBookingManagementController@update')->name('update');
 
 
         });
@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function(){
     });
 
 
-
+    Route::get('/housing/checkAvailability','AdminHousingManagementController@checkHousingAvailability')->name('checkHousingAvailability');
 
 
 

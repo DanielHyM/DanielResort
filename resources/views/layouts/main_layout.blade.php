@@ -61,7 +61,7 @@
 
         form{
             margin: 0 auto;
-            width: 500px;
+
         }
 
         body{
@@ -111,9 +111,6 @@
     <script src="{{asset('jqueryUI/jquery-ui.js')}}"></script>
     <script src="{{asset('js/timepicker.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-
-
     <script>
         $.ajaxSetup({
             headers:{
@@ -173,6 +170,39 @@
         $(function () {
             $("#fecha").datepicker();
         });
+
+
+        function checkHousingAvailability(housingId,checkInDate,checkOutDate,checkInTime,checkOutTime){
+            $.get('{{route('checkHousingAvailability')}}',{
+                checkInDate:checkInDate,
+                checkOutDate:checkOutDate,
+                housingId:housingId,
+                checkInTime:checkInTime,
+                checkOutTime:checkOutTime
+            }).done(function(response){
+                if(!response.availability){
+                    Swal.fire(
+                        '¡Ups!',
+                        'Reserva no disponible para esa fecha.',
+                        'error'
+                    )
+                }else{
+                    $('.checkAvaiability').submit();
+                }
+            })
+        }
+
+        $('.checkAvaiability button[type="submit"]').click(function(event){
+            event.preventDefault();
+            var housingId = $('.checkAvaiability').data('housing');
+            var checkInDate = $('#check_in_date').val();
+            var checkOutDate = $('#check_out_date').val();
+            var checkInTime = $('#check_in_time').val();
+            var checkOutTime = $('#check_out_time').val();
+
+            checkHousingAvailability(housingId,checkInDate,checkOutDate,checkInTime,checkOutTime)
+
+        })
 
 
     </script>

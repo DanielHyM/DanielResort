@@ -12,7 +12,7 @@
                     <div class="card-header">{{ __('Reservar Alojamiento') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('user.booking.store', $housing)}}">
+                        <form method="POST" action="{{route('user.booking.store', $housing)}}" class="checkAvaiability" data-housing="{{$housing->id}}">
                             @csrf
                             <div class="form-group row">
                                 <label for="floor" class="col-md-4 col-form-label text-md-right">{{ __('Planta') }}</label>
@@ -167,3 +167,5 @@
     </div>
 
 @endsection
+
+

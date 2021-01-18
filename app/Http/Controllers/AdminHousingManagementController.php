@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Housing;
+use App\Services\HousingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,6 +14,12 @@ use function Symfony\Component\Translation\t;
 
 class AdminHousingManagementController extends Controller
 {
+    protected $housingService;
+    public function __construct(HousingService $housingService)
+    {
+        $this->housingService = $housingService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -143,31 +150,32 @@ class AdminHousingManagementController extends Controller
 
                 })->addColumn('available', function ($housing){
 
-                    $bookings = Booking::where('housing_id',$housing->id)->first();
+                    $bookings = Booking::where('housing_id',$housing->id)->get();
+                    $today = Carbon::now()->format('Y-m-d');
 
-                    if($bookings==null){
-                        return '<label>Disponible</label>';
+                    if($bookings->where('check_in_date',$today)->count() > 0){
+                        return '<label> No Disponible</label>';
                     }else{
-                        return '<label>No Disponible</label>';
+                        return '<label> Disponible</label>';
                     }
 
 
-                })->addColumn('dateOfAvailable', function ($housing){
+                })->addColumn('available_date', function ($housing){
 
-
-                    $bookings = Booking::where('housing_id',$housing->id)->first();
-
-                    if($bookings==null){
-                        return '<label>Libre</label>';
+                    $bookings = Booking::where('housing_id',$housing->id)->orderBy('check_in_date','DESC')->first();
+                    $tomorrow = Carbon::now()->addDays(1)->format('Y-m-d');
+                    $tomorrowFormatted = Carbon::parse($tomorrow)->format('d-m-Y');
+                    if($bookings['check_in_date'] > $tomorrow){
+                        return "<label> Disponible el dia  $tomorrowFormatted  </label>";
                     }else{
-                        return '<label>Test</label>';
+                        return '<label> Disponibilidad Inmediata</label>';
                     }
 
                 })->editColumn('created_at', function ($housing){
 
                     return Carbon::parse($housing->created_at)->format('d/m/Y h:i:s');
 
-                })->rawColumns(['actions','available','dateOfAvailable','image'])->make(true);
+                })->rawColumns(['actions','available','dateOfAvailable','image','available_date'])->make(true);
 
 
 
@@ -175,5 +183,18 @@ class AdminHousingManagementController extends Controller
         return $housingDataTables;
 
 
+    }
+
+    public function checkHousingAvailability(Request $request){
+
+
+        $housingId = $request->housingId;
+        $checkInDate = $request->checkInDate;
+        $checkOutDate = $request->checkOutDate;
+        $checkInTime = $request->checkInTime;
+        $checkOutTime = $request->checkOutTime;
+
+        $availability = $this->housingService->checkHousingAvailability($housingId,$checkInDate,$checkOutDate,$checkInTime,$checkOutTime);
+        return response()->json(['availability'=>$availability],200);
     }
 }

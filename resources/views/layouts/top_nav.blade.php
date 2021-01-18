@@ -12,12 +12,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('/')}}">Inicio <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Quiénes Somos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Donde Estamos</a>
-            </li>
+
 
             @can('admin')
 
@@ -33,7 +28,7 @@
                     </div>
                 </li>
 
-                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['housings.create']) ? "show" : null }} ">
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['housings.create','housings.index']) ? "show" : null }} ">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Apartamentos
                     </a>
@@ -45,7 +40,7 @@
                     </div>
                 </li>
 
-                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['bookings.create']) ? "show" : null }}">
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['bookings.create','bookings.index']) ? "show" : null }}">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reservas
                     </a>
@@ -64,7 +59,7 @@
 
             @can('user')
 
-                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['user.home']) ? "show" : null }} ">
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['user.housing.list','user.booking.list']) ? "show" : null }} ">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Apartamentos
                     </a>

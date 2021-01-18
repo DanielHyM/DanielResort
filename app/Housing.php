@@ -28,4 +28,11 @@ class Housing extends Model implements hasMedia
         $this->addMediaCollection('housingImages')->useDisk('housingImages')->singleFile();
 
     }
+
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
+
+
+
 }

@@ -21,5 +21,17 @@ class Booking extends Model
 
         ];
 
+    public function housing(){
+       return  $this->belongsTo(Housing::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+
+
+
 
 }

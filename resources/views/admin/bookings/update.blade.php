@@ -12,7 +12,7 @@
                     <div class="card-header">{{ __('Modificar Reserva') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('bookings.update', $booking, $user)}}">
+                        <form method="POST" action="{{route('bookings.update', $booking, $user)}}" class="checkAvaiability" data-housing="{{$housing->id}}">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
 
@@ -21,7 +21,7 @@
                                 <label for="user" class="col-md-4 col-form-label text-md-right">{{ __('Cliente') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="user" type="text" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('floor',$user->name) }}" required >
+                                    <input id="user" type="text" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('floor',$user->name) }}" disabled >
 
                                     @error('user')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
                                 <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Dni') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni',$user->dni) }}" required >
+                                    <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni',$user->dni) }}" disabled >
 
                                     @error('dni')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                                 <label for="floor" class="col-md-4 col-form-label text-md-right">{{ __('Planta') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="floor" type="text" class="form-control @error('floor') is-invalid @enderror" name="floor" value="{{ old('floor',$housing->floor) }}" required >
+                                    <input id="floor" type="text" class="form-control @error('floor') is-invalid @enderror" name="floor" value="{{ old('floor',$housing->floor) }}" disabled >
 
                                     @error('floor')
                                     <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                                 <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Numero Habitacion') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="room_number" type="text" class="form-control @error('room_number') is-invalid @enderror" name="room_number"  value="{{$housing->room_number}}">
+                                    <input id="room_number" type="text" class="form-control @error('room_number') is-invalid @enderror" name="room_number"  value="{{$housing->room_number}}" disabled>
 
                                     @error('room_number')
                                     <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description"  value="{{$housing->description}}" required >
+                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description"  value="{{$housing->description}}" disabled >
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">

@@ -37,7 +37,8 @@ class UserController extends Controller
 
         $bookingDataTable = DataTables::of($bookingData)
             ->editColumn('housing_id',function($booking){
-                $housing = Housing::find($booking)->first();
+                //$housing = Housing::find($booking->housing_id);
+                $housing = $booking->housing;
                 return  $housing->room_number;
 
             })->editColumn('user_id',function($booking){
@@ -54,11 +55,11 @@ class UserController extends Controller
 
             })->editColumn('check_in_date',function($booking){
 
-                 return Carbon::parse($booking->created_at)->format('d/m/Y');
+                 return Carbon::parse($booking->check_in_date)->format('d/m/Y');
 
             })->editColumn('check_out_date',function($booking){
 
-                return Carbon::parse($booking->created_at)->format('d/m/Y');
+                return Carbon::parse($booking->check_out_date)->format('d/m/Y');
 
             })->rawColumns(['actions'])->make(true);
 
@@ -70,6 +71,8 @@ class UserController extends Controller
 
     public function edit(Booking $booking){
 
+        $booking->check_in_date = Carbon::createFromFormat('Y-m-d',$booking->check_in_date)->format('d-m-Y');
+        $booking->check_out_date = Carbon::createFromFormat('Y-m-d',$booking->check_out_date)->format('d-m-Y');
 
         return view('user.bookings.update',compact('booking'));
     }

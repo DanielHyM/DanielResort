@@ -53,7 +53,7 @@ class AdminBookingManagementController extends Controller
         $requestUserId = User::where('id',$request->user_id)->first();
 
 
-        if($user->roles->first()->name == 'admin'){
+        if($user->hasRole('admin')){
             $bookingData['user_id'] = $requestUserId->id;
         }
 
@@ -80,7 +80,6 @@ class AdminBookingManagementController extends Controller
         if($user->roles->first()->name == 'admin'){
             return redirect(route('bookings.index'));
         }else{
-
             return redirect(route('user.booking.list'));
         }
 
@@ -105,8 +104,8 @@ class AdminBookingManagementController extends Controller
      */
     public function edit(Booking $booking)
     {
-        $housing = Housing::find($booking->housing_id)->first();
-        $user = User::find($booking->user_id)->first();
+        $housing = $booking->housing;
+        $user = $booking->user;
 
         $booking->check_in_date = Carbon::parse($booking->check_in_date)->format('d-m-Y');
         $booking->check_out_date = Carbon::parse($booking->check_out_date)->format('d-m-Y');
@@ -123,6 +122,7 @@ class AdminBookingManagementController extends Controller
      */
     public function update(Request $request,Booking $booking)
     {
+
 
       $requestUser=  User::where('name',$request->user)->first();
       $requestHousing = Housing::where('room_number',$request->room_number)->first();
@@ -189,7 +189,7 @@ class AdminBookingManagementController extends Controller
         $bookingDataTable = DataTables::of($bookingData)
             ->editColumn('housing_id',function($booking){
 
-                $housing = Housing::find($booking)->first();
+                $housing = $booking->housing;
 
                 return  $housing->room_number;
 
