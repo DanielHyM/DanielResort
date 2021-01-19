@@ -16,5 +16,8 @@ class Controller extends BaseController
     }
 
 
+    public function whereWeAre(){
+        return view('where_we_are');
+    }
 
 }

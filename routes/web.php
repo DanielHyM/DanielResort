@@ -20,6 +20,7 @@ Route::get('/', 'Controller@welcomeView')->name('/');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/dondeEstamos', 'Controller@WhereWeAre')->name('home.whereWeAre');
 
 Route::middleware('auth')->group(function(){
 

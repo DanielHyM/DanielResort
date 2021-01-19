@@ -13,6 +13,13 @@
                 <a class="nav-link" href="{{route('/')}}">Inicio <span class="sr-only">(current)</span></a>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('home.whereWeAre')}}">Dónde Estamos <span class="sr-only">(current)</span></a>
+
+            </li>
+
+
+
 
             @can('admin')
 

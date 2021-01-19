@@ -36,9 +36,11 @@
         }
 
         .body-content{
+
             margin-top: 50px;
             text-align: center;
             padding: 0 50px;
+
 
 
         }
@@ -82,6 +84,39 @@
             float: left;
         }
 
+        .mapouter{
+            float: right;
+            margin-right: 2em;
+
+        }
+
+        .whereWeAreText{
+            float:left;
+            margin-left: 2em;
+            width: 1000px;
+        }
+
+        .footer-content{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            background-color: #007BFF;
+            background-attachment: scroll;
+            position: fixed;
+            color: white;
+
+
+        }
+
+        .footer a{
+            color: white;
+        }
+
+        .pagination{
+            overflow: visible;
+            padding-bottom: 30px;
+        }
+
 
 
     </style>
@@ -102,6 +137,16 @@
 
     <div class="footer-content">
         @yield("footer")
+
+            <footer class=" text-center text-lg-start">
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                    © 2020 Copyright:
+                    <label>DanielResorts todos los derechos reservados</label>
+                </div>
+                <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

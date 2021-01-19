@@ -33,7 +33,9 @@
     @endforeach
 
     </div>
+    <div class="pagination">
     {{$housings->links()}}
+    </div>
 
 @endsection
 
