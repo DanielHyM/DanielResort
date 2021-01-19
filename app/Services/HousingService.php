@@ -21,11 +21,15 @@ class HousingService
         }else{
 
             $bookingData = Housing::findOrFail($housingId)->bookings()->where(function($query) use($checkInDate,$checkOutDate){
+                $query->where(function($query) use($checkInDate,$checkOutDate){
                     $query->where('check_in_date', ">=", $checkInDate)
-                    ->where('check_in_date',"<=",$checkOutDate);
-            })->orWhere(function($query2) use ($checkOutDate,$checkInDate){
-                $query2->where('check_out_date', ">=", $checkInDate)
-                    ->where('check_out_date',"<=",$checkOutDate);
+                        ->where('check_in_date',"<=",$checkOutDate);
+                })->orWhere(function($query2) use ($checkOutDate,$checkInDate){
+                    $query2->where('check_out_date', ">=", $checkInDate)
+                        ->where('check_out_date',"<=",$checkOutDate);
+
+                });
+
 
             });
 
