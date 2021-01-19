@@ -202,6 +202,15 @@ class AdminBookingManagementController extends Controller
             })->editColumn('created_at',function($booking){
 
                 return Carbon::parse($booking->created_at)->format('d/m/Y h:i:s');
+            })->editColumn('check_in_date',function($booking){
+
+            return Carbon::parse($booking->check_in_date)->format('d/m/Y');
+            })->editColumn('check_out_date',function($booking){
+
+            return Carbon::parse($booking->check_out_date)->format('d/m/Y');
+            })->editColumn('check_out_time',function($booking){
+
+                return Carbon::parse($booking->check_out_time)->format(' h:i:s');
             })->addColumn('actions',function($booking){
 
                 return '<a  class="btn btn-success" href='. route('bookings.edit', $booking) . '><i class="fas fa-pencil-alt"></i></a>'

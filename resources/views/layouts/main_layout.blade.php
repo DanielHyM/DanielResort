@@ -20,32 +20,59 @@
     <title>DanielResort</title>
     <style>
 
+         input[type=submit]{
+
+            background: linear-gradient(to bottom, #57B2FF, #0086F8);
+            box-shadow: 0px 5px 20px 1px;
+             border-radius: .4em;
+        }
+
+        .navbar{
+
+            background: linear-gradient(to bottom, #57B2FF, #0086F8);
+            box-shadow: 0px 5px 20px 1px;
+        }
+
+        .card-header{
+
+            background: linear-gradient(to bottom, #57B2FF, #0086F8);
+            box-shadow: 0px 5px 20px 1px;
+            border-radius: .4em;
+        }
+
+        .card-body{
+
+            box-shadow: 0px 5px 20px 1px;
+            border-radius: .4em;
+        }
+
+        a:hover{
+
+            box-shadow: 0px 5px 20px 1px;
+            border-radius: .2em;
+        }
+
         #danielResortIcon{
+
             width:50px;
             height: 50px;
         }
 
         #carouselExampleIndicators{
+
             width: 800px;
             margin: 0 auto;
-
         }
 
         a{
             margin: 2px;
         }
-
         .body-content{
 
             margin-top: 50px;
             text-align: center;
             padding: 0 50px;
-
-
-
         }
-
-
         #mainText{
             margin-top: 20px;
         }
@@ -87,6 +114,12 @@
         .mapouter{
             float: right;
             margin-right: 2em;
+            color:#aaa;
+            background: linear-gradient(to bottom, #57B2FF, #0086F8);
+            width: 200px;
+            height:120px;
+            box-shadow: 0px 5px 20px 1px;
+            border-radius: .4em;
 
         }
 
@@ -100,10 +133,14 @@
             position: absolute;
             bottom: 0px;
             width: 100%;
+            height: 50px;
             background-color: #007BFF;
             background-attachment: scroll;
             position: fixed;
             color: white;
+            background: linear-gradient(to top, #57B2FF, #0086F8);
+            box-shadow: 0px 5px 20px 1px;
+
 
 
         }
@@ -116,6 +153,20 @@
             overflow: visible;
             padding-bottom: 30px;
         }
+
+        .carousel-inner{
+            background: linear-gradient(to bottom, #57B2FF, #0086F8);
+            box-shadow: 0px 5px 20px 1px;
+            border-radius: .4em;
+
+
+
+
+        }
+
+
+
+
 
 
 

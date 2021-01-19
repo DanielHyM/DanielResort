@@ -10,6 +10,18 @@ class Booking extends Model
 {
     use SoftDeletes;
     //
+
+
+    /**
+     * @var string[]
+     */
+    protected $casts = [
+
+        'check_out_time' => 'date',
+        'check_out_date' => 'date'
+
+    ];
+
     protected $fillable = [
 
         'user_id',

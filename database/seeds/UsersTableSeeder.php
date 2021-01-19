@@ -14,16 +14,16 @@ class UsersTableSeeder extends Seeder
     {
         //
         $user = User::firstOrCreate([
-            'name'=>'Daniel',
-            'dni'=>'49130181-L',
-            'email'=>'dhidalgo@10code.es',
+            'name'=>'Admin',
+            'dni'=>'45432345-L',
+            'email'=>'admin@admin.es',
             'user'=>'admin',
             'password'=> bcrypt('admin')
             ]);
 
         $userSecond = User::firstOrCreate([
             'name'=>'user',
-            'dni'=>'49130181-L',
+            'dni'=>'456786543-X',
             'email'=>'user@user.es',
             'user'=>'user',
             'password'=> bcrypt('user')

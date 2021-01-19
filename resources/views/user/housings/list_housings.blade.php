@@ -15,7 +15,7 @@
 
     @foreach($housings as $housing)
 
-    <div class="card col-md-4 col-sm-12">
+    <div class="card col-md-4 col-sm-12" style="padding: 20px; background-color: #F2F2F2">
         @if($housing->getMedia('housingImages')->first() != null)
         <img src="{{asset($housing->getMedia('housingImages')->first()->getUrl())}}" class="card-img-top" alt="...">
         @endif

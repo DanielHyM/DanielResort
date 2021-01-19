@@ -6,9 +6,11 @@ use App\Booking;
 use App\Housing;
 use App\Services\HousingService;
 use Carbon\Carbon;
+use Carbon\Traits\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Mockery\Exception;
+use Spatie\Period\Period;
 use Yajra\DataTables\DataTables;
 use function Symfony\Component\Translation\t;
 
@@ -136,6 +138,43 @@ class AdminHousingManagementController extends Controller
     }
 
 
+    public function calcAvaiability($housingId)
+    {
+
+        $today = Carbon::now()->format('Y-m-d');
+        $tomorrow = Carbon::now()->addDays(1)->format('Y-m-d');
+        $bookings = Booking::where('housing_id',$housingId)->where('check_out_date','>=',$tomorrow)->orderBy('check_in_date', 'DESC')->get();
+
+        if(count($bookings) > 0) {
+            $bookingLastCheckOut = $bookings->first()->check_out_date;
+            $fullPeriod = Period::make($tomorrow, $bookingLastCheckOut);
+            $arrPeriods = [];
+
+
+            foreach ($bookings as $booking) {
+                $bookingPeriod = Period::make($booking->check_in_date, $booking->check_out_date);
+                $arrPeriods[] = $bookingPeriod;
+                $lastBooking = $booking;
+
+            }
+
+
+            $dateResults = $fullPeriod->diff(...$arrPeriods);
+
+
+            if ($dateResults->count() == 0) {
+                $date = Carbon::createFromFormat('Y-m-d', $lastBooking->check_out_date)->addDay();
+            } else {
+                $date = $dateResults[0]->getStart();
+            }
+
+            return Carbon::parse($date)->format('d-m-Y');
+        }else{
+            return '';
+        }
+    }
+
+
     public function listHousings(Request $request)
     {
         $housingsData = Housing::all();
@@ -153,7 +192,7 @@ class AdminHousingManagementController extends Controller
                     $bookings = Booking::where('housing_id',$housing->id)->get();
                     $today = Carbon::now()->format('Y-m-d');
 
-                    if($bookings->where('check_in_date',$today)->count() > 0){
+                    if($this->calcAvaiability($housing->id) != null){
                         return '<label> No Disponible</label>';
                     }else{
                         return '<label> Disponible</label>';
@@ -162,11 +201,14 @@ class AdminHousingManagementController extends Controller
 
                 })->addColumn('available_date', function ($housing){
 
-                    $bookings = Booking::where('housing_id',$housing->id)->orderBy('check_in_date','DESC')->first();
+
                     $tomorrow = Carbon::now()->addDays(1)->format('Y-m-d');
                     $tomorrowFormatted = Carbon::parse($tomorrow)->format('d-m-Y');
-                    if($bookings['check_in_date'] > $tomorrow){
-                        return "<label> Disponible el dia  $tomorrowFormatted  </label>";
+                    $date = $this->calcAvaiability($housing->id);
+
+                    if($this->calcAvaiability($housing->id) != null){
+
+                          return "<label> Disponible el dia " .$date ." </label>";
                     }else{
                         return '<label> Disponibilidad Inmediata</label>';
                     }
@@ -184,6 +226,10 @@ class AdminHousingManagementController extends Controller
 
 
     }
+
+
+
+
 
     public function checkHousingAvailability(Request $request){
 

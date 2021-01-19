@@ -9,7 +9,7 @@ class HousingService
 {
 
 
-    public function checkHousingAvailability($housingId,$checkInDate,$checkOutDate,$checkOutTime,$checkInTime)
+    public function checkHousingAvailability($housingId,$checkInDate,$checkOutDate,$checkInTime,$checkOutTime)
     {
         $isAvailable = true;
 
