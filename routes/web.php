@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
         Route::resource('/bookings', 'AdminBookingManagementController');
         Route::resource('', 'AdminController');
 
+
         Route::group(['prefix'=>'users', 'as'=>'users.'], function(){
             Route::post('/listUsers', 'AdminUserManagementController@listUsers')->name('listUsers');
 
@@ -48,20 +49,18 @@ Route::middleware('auth')->group(function(){
 
         });
 
+        Route::resource('statistics', 'StatisticsController');
+
+
 
     });
 
-    Route::group(['prefix'=>'user' , 'as' => 'user.' , 'middleware' => ['permission:user']], function(){
-
+    Route::group(['prefix'=>'user' , 'as' => 'user.' , 'middleware' => ['permission:user|admin']], function(){
         Route::group(['prefix'=>'housings', 'as'=>'housing.'], function(){
             Route::get('/listHousings', 'UserController@index')->name('list');
-
         });
-
         Route::group(['prefix'=>'home'], function(){
             Route::get('', 'UserController@index')->name('home');
-
-
         });
 
 

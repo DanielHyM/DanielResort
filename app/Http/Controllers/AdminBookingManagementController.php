@@ -54,7 +54,7 @@ class AdminBookingManagementController extends Controller
 
 
         if($user->hasRole('admin')){
-            $bookingData['user_id'] = $requestUserId->id;
+            $bookingData['user_id'] = Auth::id();
         }
 
 
@@ -68,10 +68,10 @@ class AdminBookingManagementController extends Controller
         $bookingData['check_in_time'] = str_replace('AM','',$bookingData['check_in_time']);
         $bookingData['check_out_time'] = str_replace('PM','',$bookingData['check_out_time']);
         $bookingData['check_out_time'] = str_replace('AM','',$bookingData['check_out_time']);
-
+        $bookingData['housing_id'] = $housing->id;
         if($user->roles->first()->name != 'admin'){
             $bookingData['user_id'] = $user->id;
-            $bookingData['housing_id'] = $housing->id;
+
         }
 
 

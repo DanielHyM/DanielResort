@@ -25,7 +25,7 @@
 
                 <li class="dropdown  nav-item {{in_array(Route::currentRouteName(),['users.create','users.index']) ? "show" : null }}">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Usuarios
+                        Gestion de Usuarios
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -37,11 +37,11 @@
 
                 <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['housings.create','housings.index']) ? "show" : null }} ">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Apartamentos
+                        Gestion de Apartamentos
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{route('housings.index')}}">Lista de Apartamentos</a>
+                        <a class="dropdown-item" href="{{route('housings.index')}}">Tabla Lista de Apartamentos</a>
                         <a class="dropdown-item" href="{{route('housings.create')}}">Crear Apartamentos</a>
 
                     </div>
@@ -59,12 +59,22 @@
                     </div>
                 </li>
 
+                <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['statistics.index']) ? "show" : null }}">
+                    <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Estadísticas
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{route('statistics.index')}}">Estadísticas de Reservas</a>
+
+                    </div>
+                </li>
+
 
 
 
             @endcan
 
-            @can('user')
 
                 <li class="dropdown   nav-item   {{in_array(Route::currentRouteName(),['user.housing.list','user.booking.list']) ? "show" : null }} ">
                     <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,22 +82,13 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{route('user.housing.list',Auth::user()->id)}}">Lista de Apartamentos</a>
-
+                        <a class="dropdown-item" href="{{route('user.housing.list')}}">Lista de Apartamentos</a>
+                    @can('user')
                         <a class="dropdown-item" href="{{route('user.booking.list')}}">Mis Reservas</a>
+                    @endcan
                     </div>
 
-
-
-
-
-
                 </li>
-
-
-
-
-            @endcan
 
 
 
