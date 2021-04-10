@@ -20,7 +20,7 @@
     <title>DanielResort</title>
     <style>
 
-        #piechart_3d{
+        #curve_chart{
             box-shadow: 0px 5px 20px 1px;
             border-radius: .4em;
 

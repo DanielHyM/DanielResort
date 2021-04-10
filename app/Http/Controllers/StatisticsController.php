@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatisticsController extends Controller
 {
@@ -14,7 +16,9 @@ class StatisticsController extends Controller
     public function index()
     {
         //
-        return view('statistics.booking_statistics');
+        $bookingsByMonth = DB::table('bookings')->whereNotNull('deleted_at')->groupBy('check_in_date')->count();
+        dd($bookingsByMonth);
+        return view('statistics.booking_statistics',compact('bookingsByMonth'));
     }
 
     /**

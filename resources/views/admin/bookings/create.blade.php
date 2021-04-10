@@ -141,14 +141,11 @@
 
 
     $(document).ready(function(){
-
         $('#housing_id').trigger('change')
-
     })
 
     $('#housing_id').change(function(){
          console.log( $(this).val())
-
         $('#checkAvaiability').attr('data-housing', $(this).val())
 
     })

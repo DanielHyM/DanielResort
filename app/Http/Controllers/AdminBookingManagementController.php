@@ -47,16 +47,10 @@ class AdminBookingManagementController extends Controller
     {
         $bookingData = $request->all();
 
+
         $user = Auth::user();
 
-
         $requestUserId = User::where('id',$request->user_id)->first();
-
-
-        if($user->hasRole('admin')){
-            $bookingData['user_id'] = Auth::id();
-        }
-
 
 
         $bookingData['check_in_date'] = Carbon::parse($bookingData['check_in_date'])->format('Y-m-d');
@@ -68,9 +62,10 @@ class AdminBookingManagementController extends Controller
         $bookingData['check_in_time'] = str_replace('AM','',$bookingData['check_in_time']);
         $bookingData['check_out_time'] = str_replace('PM','',$bookingData['check_out_time']);
         $bookingData['check_out_time'] = str_replace('AM','',$bookingData['check_out_time']);
-        $bookingData['housing_id'] = $housing->id;
+
         if($user->roles->first()->name != 'admin'){
             $bookingData['user_id'] = $user->id;
+            $bookingData['housing_id'] = $housing->id;
 
         }
 
