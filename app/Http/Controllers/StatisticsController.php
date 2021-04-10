@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,14 +12,39 @@ class StatisticsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //
-        $bookingsByMonth = DB::table('bookings')->whereNotNull('deleted_at')->groupBy('check_in_date')->count();
-        dd($bookingsByMonth);
-        return view('statistics.booking_statistics',compact('bookingsByMonth'));
+        $bookingsByMonth = DB::table('bookings')->whereNull('deleted_at')->get();
+        $arrMonthCount = [
+            'Jan' => 0,
+            'Feb' => 0,
+            'Mar' => 0,
+            'Apr' => 0,
+            'May' => 0,
+            'Jun' => 0,
+            'Jul' => 0,
+            'Auo' => 0,
+            'Sep' => 0,
+            'Oct' => 0,
+            'Nov' => 0,
+            'Dec' => 0,
+        ];
+
+        foreach ($bookingsByMonth as $item){
+            $item->check_in_date = str_replace('-','/',$item->check_in_date);
+            $month =  Carbon::createFromFormat('Y/m/d',  $item->check_in_date)->format('M');
+
+            foreach ($arrMonthCount as $arrMonthItem => $value){
+                if($arrMonthItem == $month){
+                    $arrMonthCount[$arrMonthItem]++;
+                }
+            }
+        }
+
+        return view('statistics.booking_statistics' ,compact('arrMonthCount'));
     }
 
     /**

@@ -9,18 +9,18 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Month', 'Reservas'],
-                ['Enero',  1000],
-                ['Febrero',  1170],
-                ['Marzo',  660],
-                ['Abril',  1030],
-                ['Mayo',  1030],
-                ['Junio',  1030],
-                ['Julio',  1030],
-                ['Agosto',  1030],
-                ['Septiembre',  1030],
-                ['Octubre',  1030],
-                ['Noviembre',  1030],
-                ['Diciembre',  1030],
+                ['Enero', {{$arrMonthCount['Jan']}}],
+                ['Febrero',  {{$arrMonthCount['Feb']}}],
+                ['Marzo',  {{$arrMonthCount['Mar']}}],
+                ['Abril',  {{$arrMonthCount['Apr']}}],
+                ['Mayo',  {{$arrMonthCount['May']}}],
+                ['Junio',  {{$arrMonthCount['Jun']}}],
+                ['Julio',  {{$arrMonthCount['Jul']}}],
+                ['Agosto',  {{$arrMonthCount['Auo']}}],
+                ['Septiembre',  {{$arrMonthCount['Sep']}}],
+                ['Octubre',  {{$arrMonthCount['Oct']}}],
+                ['Noviembre',  {{$arrMonthCount['Nov']}}],
+                ['Diciembre',  {{$arrMonthCount['Dec']}}],
             ]);
 
             var options = {
