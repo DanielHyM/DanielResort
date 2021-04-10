@@ -131,8 +131,6 @@ class AdminBookingManagementController extends Controller
             $booking->user_id = Auth::id();
 
         }
-
-
         $booking->check_in_date = $request->check_in_date;
         $booking->check_in_time = $request->check_in_time;
         $booking->check_out_date = $request->check_out_date;
@@ -147,9 +145,6 @@ class AdminBookingManagementController extends Controller
         $booking['check_in_time'] = str_replace('AM','',$booking['check_in_time']);
         $booking['check_out_time'] = str_replace('PM','',$booking['check_out_time']);
         $booking['check_out_time'] = str_replace('AM','',$booking['check_out_time']);
-
-
-
 
         $booking->save();
 

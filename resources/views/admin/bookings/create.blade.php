@@ -57,11 +57,7 @@
 
                                 <div class="col-md-6">
 
-
-                                    <input size="16" type="text" class="form-control datepicker" id="check_in_date" name="check_in_date">
-
-
-
+                                    <input size="16" type="text" class="form-control datepicker" id="check_in_date" name="check_in_date" autocomplete="off">
 
                                     @error('check_in_date')
                                     <span class="invalid-feedback" role="alert">
@@ -75,7 +71,7 @@
                                 <label for="check_in_time" class="col-md-4 col-form-label text-md-right">{{ __('Hora de Entrada') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="check_in_time" type="text" class="form-control timepicker @error('check_in_time') is-invalid @enderror" name="check_in_time" >
+                                    <input id="check_in_time" type="text" class="form-control timepicker @error('check_in_time') is-invalid @enderror" name="check_in_time" autocomplete="off" >
 
                                     @error('check_in_time')
                                     <span class="invalid-feedback" role="alert">
@@ -91,7 +87,7 @@
                                 <div class="col-md-6">
 
 
-                                    <input size="16" type="text" class="form-control datepicker" id="check_out_date" name="check_out_date">
+                                    <input size="16" type="text" class="form-control datepicker" id="check_out_date" name="check_out_date" autocomplete="off">
 
 
 
@@ -109,7 +105,7 @@
                                 <label for="check_out_time" class="col-md-4 col-form-label text-md-right">{{ __('Hora de Salida') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="check_out_time" type="text" class="form-control timepicker @error('check_out_time') is-invalid @enderror" name="check_out_time" >
+                                    <input id="check_out_time" type="text" class="form-control timepicker @error('check_out_time') is-invalid @enderror" name="check_out_time" autocomplete="off" >
 
                                     @error('check_out_time')
                                     <span class="invalid-feedback" role="alert">
