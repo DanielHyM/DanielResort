@@ -26,6 +26,11 @@
 
         }
 
+        #chart_div{
+            box-shadow: 0px 5px 20px 1px;
+            border-radius: .4em;
+        }
+
          input[type=submit]{
 
             background: linear-gradient(to bottom, #57B2FF, #0086F8);

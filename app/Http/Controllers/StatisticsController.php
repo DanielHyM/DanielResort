@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Housing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,12 +27,28 @@ class StatisticsController extends Controller
             'May' => 0,
             'Jun' => 0,
             'Jul' => 0,
-            'Auo' => 0,
+            'Aug' => 0,
             'Sep' => 0,
             'Oct' => 0,
             'Nov' => 0,
             'Dec' => 0,
         ];
+
+        $arrMonthProfit = [
+            'Jan' => 0,
+            'Feb' => 0,
+            'Mar' => 0,
+            'Apr' => 0,
+            'May' => 0,
+            'Jun' => 0,
+            'Jul' => 0,
+            'Aug' => 0,
+            'Sep' => 0,
+            'Oct' => 0,
+            'Nov' => 0,
+            'Dec' => 0,
+        ];
+
 
         foreach ($bookingsByMonth as $item){
             $item->check_in_date = str_replace('-','/',$item->check_in_date);
@@ -42,9 +59,19 @@ class StatisticsController extends Controller
                     $arrMonthCount[$arrMonthItem]++;
                 }
             }
+
+            foreach ($arrMonthProfit as $arrMonthProfitItem => $value){
+                $housing = Housing::where('id','=', $item->housing_id)->first();
+                $price = $housing->price_per_night;
+                $days = Carbon::parse($item->check_in_date)->diffInDays(Carbon::parse($item->check_out_date));
+
+                if($arrMonthProfitItem == $month){
+                    $arrMonthProfit[$arrMonthProfitItem]+= $price * $days;
+                }
+            }
         }
 
-        return view('statistics.booking_statistics' ,compact('arrMonthCount'));
+        return view('statistics.booking_statistics' ,compact('arrMonthCount', 'arrMonthProfit'));
     }
 
     /**
