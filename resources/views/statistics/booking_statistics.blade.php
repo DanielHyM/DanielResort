@@ -37,7 +37,7 @@
 
 @section("content")
     <body>
-    <div id="curve_chart" style="width: 70%; height: 500px; margin:auto"></div>
+    <div id="curve_chart" style="width: 100%; height: 500px; margin:auto"></div>
     </body>
 
 @endsection

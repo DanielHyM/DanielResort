@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         //
-        $user = User::firstOrCreate([
+        $user = User::create([
             'name'=>'Admin',
             'dni'=>'45432345-L',
             'email'=>'admin@admin.es',
@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'password'=> bcrypt('admin')
             ]);
 
-        $userSecond = User::firstOrCreate([
+        $userSecond = User::create([
             'name'=>'user',
             'dni'=>'456786543-X',
             'email'=>'user@user.es',
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
         $userSecond->assignRole('user');
         $user->assignRole('admin');
 
-        factory(User::class,10)->create()->each(function($userClient){
+        factory(User::class,150)->create()->each(function($userClient){
 
             $userClient->assignRole('user');
 
