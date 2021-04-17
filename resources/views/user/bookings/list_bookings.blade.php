@@ -20,6 +20,7 @@
                 <th>Hora de Entrada</th>
                 <th>Fecha de Salida</th>
                 <th>Hora de Salida</th>
+                <th>Precio total</th>
                 <th>Fecha de Compra</th>
                 <th>Acciones</th>
 
@@ -62,8 +63,11 @@
                     { data: 'check_in_time' },
                     { data: 'check_out_date' },
                     { data: 'check_out_time' },
+                    { data: 'total_price' },
                     { data: 'created_at' },
-                    { data: 'actions' }
+                    { data: 'actions' },
+
+
 
 
                 ],

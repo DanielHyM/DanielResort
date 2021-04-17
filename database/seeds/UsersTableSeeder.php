@@ -36,7 +36,6 @@ class UsersTableSeeder extends Seeder
 
             $userClient->assignRole('user');
 
-
         });
 
 
