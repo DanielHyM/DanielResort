@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Comparator\Book;
 use Yajra\DataTables\DataTables;
 
@@ -177,6 +178,22 @@ class AdminBookingManagementController extends Controller
         $bookingData = Booking::all();
 
         $bookingDataTable = DataTables::of($bookingData)
+            ->addColumn('total_price', function($booking){
+
+                $check_in = Carbon::parse($booking->check_in_date);
+                $check_out = Carbon::parse($booking->check_out_date);
+
+                $days = $check_in->diffInDays($check_out);
+                $housingPrice = DB::table('bookings')
+                    ->join('housing','bookings.housing_id','=','housing.id')
+                    ->select('housing.*','bookings.*')
+                    ->where('housing.id','=', $booking->housing_id)
+                    ->first();
+
+                $price = $days * $housingPrice->price_per_night;
+
+                return round($price,2);
+            })
             ->editColumn('housing_id',function($booking){
 
                 $housing = $booking->housing;
