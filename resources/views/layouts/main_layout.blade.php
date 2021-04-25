@@ -104,8 +104,10 @@
 
         }
 
-        body{
+        body, html{
             background-color: #FBFBFD;
+            width: 100%;
+            height: 100%;
 
         }
 
@@ -122,23 +124,8 @@
             float: left;
         }
 
-        .mapouter{
-            float: right;
-            margin-right: 2em;
-            color:#aaa;
-            background: linear-gradient(to bottom, #57B2FF, #0086F8);
-            width: 200px;
-            height:120px;
-            box-shadow: 0px 5px 20px 1px;
-            border-radius: .4em;
 
-        }
 
-        .whereWeAreText{
-            float:left;
-            margin-left: 2em;
-            width: 1000px;
-        }
 
         .footer-content{
             position: absolute;
