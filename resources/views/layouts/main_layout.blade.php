@@ -83,6 +83,7 @@
             margin-top: 50px;
             text-align: center;
             padding: 0 50px;
+            height: 100%;
         }
         #mainText{
             margin-top: 20px;

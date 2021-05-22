@@ -1,13 +1,44 @@
 @extends("layouts.main_layout")
 
 
+<style>
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .container{
+            width: 100%;
+            margin: 0;
+            height: 100%;
+        }
+    }
 
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+
+        .container{
+            width: 100%;
+            margin: 0;
+            height: 100%;
+        }
+
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+
+        .container{
+            width: 100%;
+            margin: 0;
+            height: 100%;
+        }
+
+    }
+</style>
 
 @section("content")
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('Reservar Alojamiento') }}</div>
 
@@ -74,7 +105,7 @@
 
 
                                 <div class="col-md-12">
-                                    <img src="{{asset($housing->getMedia('housingImages')->first()->getUrl())}}" style="width: 200px;height: 200px;" >
+                                    <img src="{{asset($housing->getMedia('housingImages')->first()->getUrl())}}" style="width: 550px;height: 450px;" >
 
                                     @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -165,6 +196,10 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
 @endsection
 

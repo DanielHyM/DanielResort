@@ -1,12 +1,67 @@
 @extends("layouts.main_layout")
 
+<style>
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .description-texts{
+            width: 100%;
+        }
+        .google-maps{
+            width:50%;
+        }
+    }
 
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+        .description-texts{
+            width: 100%;
+        }
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        .description-texts{
+            width: 100%;
+        }
+        google-maps{
+            width: 100%;
+        }
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+        .description-texts{
+            width: 50%;
+
+        }
+        .gmap_canvas{
+            margin-left: 40px;
+            margin-top:  20px;
+        }
+
+
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        .description-texts{
+            width: 50%;
+
+        }
+        .gmap_canvas{
+            margin-left: 40px;
+            margin-top:  20px;
+        }
+    }
+
+
+</style>
 
 
 @section("content")
 
     <center><h2>Daniel Resorts, Calidad y Confort</h2></center>
-<div  style="float: left; width: 50%; margin-top: 10px">
+<div  style="float: left;  margin-top: 10px" class=" description-texts">
    <div class="row card-body" style="text-align: justify; font-size: 20px; margin-top: 15px">
        Daniel Resorts es un hotel diseñado exclusivamente para el descanso y el confort de nuestros clientes, el resort dispone de las mayores
        comodidades y tecnologías para que todos puedan disfrutar de la tranquilidad y la brisa especial de las islas canarias.
@@ -32,9 +87,9 @@
 
 </div>
 
-<div class="row" style="float: right; margin-top: 20px">
+<div class="row google-maps">
    <!--Google map-->
-   <div class="gmap_canvas card-body"><iframe  height="743" width="1000px" id="gmap_canvas" src="https://maps.google.com/maps?q=santa%20cruz%20de%20tenerife&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+   <div class="gmap_canvas card-body"><iframe  height="743" width="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=santa%20cruz%20de%20tenerife&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
    <!--Google Maps-->
 </div>
 
