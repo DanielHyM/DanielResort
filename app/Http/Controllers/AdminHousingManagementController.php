@@ -141,6 +141,11 @@ class AdminHousingManagementController extends Controller
     }
 
 
+    /**
+     * Returns the first avaiable date from a housing
+     * @param $housingId
+     * @return string
+     */
     public function calcAvaiability($housingId)
     {
 
@@ -178,6 +183,12 @@ class AdminHousingManagementController extends Controller
     }
 
 
+    /**
+     * Shows the housings datatable to the admin panel
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function listHousings(Request $request)
     {
         $housingsData = Housing::all();

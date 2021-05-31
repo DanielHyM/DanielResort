@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class StatisticsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the charts in statistics view.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

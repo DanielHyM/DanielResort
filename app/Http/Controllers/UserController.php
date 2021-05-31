@@ -14,6 +14,10 @@ use Yajra\DataTables\DataTables;
 class UserController extends Controller
 {
 
+    /**
+     * Show the index view for normal users
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(){
 
         $housings = Housing::paginate(10);
@@ -29,7 +33,11 @@ class UserController extends Controller
         return view('user.bookings.list_bookings');
     }
 
-
+    /**
+     * Returns the list of bookings only for logged users
+     * @return mixed
+     * @throws \Exception
+     */
     public function listBookings(){
 
 

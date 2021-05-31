@@ -173,6 +173,14 @@ class AdminBookingManagementController extends Controller
 
     }
 
+    /**
+     * Shows the Booking Datatable for the admin panel
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     *
+     */
+
     public function listBookings(Request $request){
 
         $bookingData = Booking::all();

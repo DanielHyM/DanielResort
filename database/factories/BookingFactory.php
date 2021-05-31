@@ -8,6 +8,9 @@ use App\User;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
+/**
+ * Generates the population for bookings table
+ */
 $factory->define(Booking::class, function (Faker $faker) {
     $date = Carbon::now();
     $startOfYear = $date->copy()->startOfYear();

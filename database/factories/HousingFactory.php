@@ -5,6 +5,9 @@
 use App\Housing;
 use Faker\Generator as Faker;
 
+/**
+ * Populates de housings table
+ */
 $factory->define(Housing::class, function (Faker $faker) {
 
     return [
