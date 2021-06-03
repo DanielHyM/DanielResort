@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/housing/checkAvailability','AdminHousingManagementController@checkHousingAvailability')->name('checkHousingAvailability');
 
+
     Route::get('/seed',function(){
         \Illuminate\Support\Facades\Artisan::call( 'migrate:fresh --seed');
     });

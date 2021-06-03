@@ -25,7 +25,9 @@ class Housing extends Model implements hasMedia
 
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('housingImages')->useDisk('housingImages')->singleFile();
+        $this->addMediaCollection('housingImages')
+            ->useDisk('housingImages')
+            ->singleFile();
 
     }
 

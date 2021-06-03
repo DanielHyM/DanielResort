@@ -12,6 +12,8 @@ class StatisticsController extends Controller
 {
     /**
      * Display the charts in statistics view.
+     * This function get all the bookings and iterates one by one taking the number of bookings per month
+     * and calculating the profit per each booking, then sends the information to booking_statistics view and draws the charts.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
