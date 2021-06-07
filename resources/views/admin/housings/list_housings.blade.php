@@ -65,7 +65,7 @@
                     { data: 'actions' }
 
                 ],
-                searching:false,
+                searching:true,
 
             });
 

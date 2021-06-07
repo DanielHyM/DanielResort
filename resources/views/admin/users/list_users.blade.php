@@ -68,7 +68,7 @@
                   { data: 'rol' },
                   { data: 'actions' }
               ],
-             searching:false,
+             searching:true,
 
 
 
