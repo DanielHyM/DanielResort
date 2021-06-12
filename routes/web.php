@@ -87,6 +87,10 @@ Route::middleware('auth')->group(function(){
         \Illuminate\Support\Facades\Artisan::call( 'migrate:fresh --seed');
     });
 
+    Route::get('/cache',function(){
+        \Illuminate\Support\Facades\Artisan::call( 'optimize:clear');
+    });
+
 
 
 
